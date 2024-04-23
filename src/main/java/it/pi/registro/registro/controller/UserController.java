@@ -1,6 +1,9 @@
 package it.pi.registro.registro.controller;
 
-import it.pi.registro.registro.dto.UserCreateDTO;
+import it.pi.registro.registro.dto.request.UserCreateRequestDTO;
+import it.pi.registro.registro.dto.request.UserInfoRequestDTO;
+import it.pi.registro.registro.dto.response.UserDataResponseDTO;
+import it.pi.registro.registro.mapper.UserMapper;
 import it.pi.registro.registro.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import it.pi.registro.registro.entity.User;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -18,17 +22,31 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private UserMapper userMapper;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
-        List<User> users = userService.getAllUsers();
-        return new ResponseEntity<>(users, HttpStatus.OK);
+    public ResponseEntity<List<UserDataResponseDTO>> getAllUsers() {
+
+        return new ResponseEntity<>(
+                userService.getAllUsers()
+                .stream()
+                .map(userMapper::toDataResponseDTO)
+                .collect(Collectors.toList()), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<User> getUserById(@PathVariable("id") Long userId) {
         User user = userService.getUserById(userId);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/info")
+    public ResponseEntity<?> getUserInfo(@Valid @RequestBody UserInfoRequestDTO userInfoDTO) {
+        try {
+            return new ResponseEntity<>(userService.getUserInfoByEmail(userInfoDTO), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     /**
@@ -44,8 +62,8 @@ public class UserController {
      * Create user with details
      */
     @PostMapping("/withDetails")
-    public ResponseEntity<User> createUserWithDetails(@Valid @RequestBody UserCreateDTO userCreateDTO) {
-        User savedUser = userService.createUserWithDetails(userCreateDTO);
+    public ResponseEntity<User> createUserWithDetails(@Valid @RequestBody UserCreateRequestDTO userCreateRequestDTO) {
+        User savedUser = userService.createUserWithDetails(userCreateRequestDTO);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 

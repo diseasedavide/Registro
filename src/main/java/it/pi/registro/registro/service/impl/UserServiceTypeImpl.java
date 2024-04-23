@@ -1,7 +1,8 @@
-package it.pi.registro.registro.service;
+package it.pi.registro.registro.service.impl;
 
 import it.pi.registro.registro.entity.UserType;
 import it.pi.registro.registro.repository.UserTypeRepository;
+import it.pi.registro.registro.service.UserTypeService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
