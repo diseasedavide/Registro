@@ -20,7 +20,9 @@ public class VoteAssignRequestDTO {
     @NotNull
     private double vote;
     private String notes;
-    private LocalDateTime vote_date;
+
+    //private LocalDateTime vote_date;
+
     @Email
     private String studentEmail;
     @Email
@@ -32,7 +34,6 @@ public class VoteAssignRequestDTO {
         return "VoteAssignRequestDTO{" +
                 "vote=" + vote +
                 ", notes='" + notes + '\'' +
-                ", vote_date=" + vote_date +
                 ", studentEmail='" + studentEmail + '\'' +
                 ", teacherEmail='" + teacherEmail + '\'' +
                 ", subjectName='" + subjectName + '\'' +

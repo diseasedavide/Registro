@@ -5,9 +5,10 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,8 @@ public class User {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
+    @Column
+    private LocalDate dateOfBirth;
     @Column(nullable = false, unique = true)
     private String email;
     @Column(nullable = false)
@@ -49,4 +52,5 @@ public class User {
                 ", email='" + email + '\'' +
                 '}';
     }
+
 }

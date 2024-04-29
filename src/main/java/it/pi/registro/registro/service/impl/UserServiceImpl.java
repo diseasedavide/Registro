@@ -13,6 +13,8 @@ import it.pi.registro.registro.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,10 +64,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getUsersWithoutDetails() {
+        List<User> users;
+        return userRepository.findUsersWhereDetailIsNull();
+    }
+
+    @Override
     public User getUserByEmail(String email) {
         User user = userRepository.findByEmail(email);
         return user;
     }
+
+
 
     @Override
     public UserInfoResponseDTO getUserInfoByEmail(UserInfoRequestDTO userInfoRequestDTO) {

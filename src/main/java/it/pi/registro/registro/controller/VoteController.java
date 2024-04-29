@@ -4,6 +4,7 @@ import it.pi.registro.registro.dto.request.VoteAssignRequestDTO;
 import it.pi.registro.registro.service.VoteService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,12 @@ public class VoteController {
 
     @PostMapping
     public ResponseEntity<?> assignVote(@Valid @RequestBody VoteAssignRequestDTO voteAssignRequestDTO) {
-        System.out.println(voteAssignRequestDTO);
-        return null;
+        try {
+            return new ResponseEntity<>(voteService.assignVote(voteAssignRequestDTO), HttpStatus.OK);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+
     }
 }

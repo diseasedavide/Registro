@@ -4,9 +4,11 @@ import it.pi.registro.registro.dto.request.UserCreateRequestDTO;
 import it.pi.registro.registro.dto.request.UserInfoRequestDTO;
 import it.pi.registro.registro.dto.response.UserInfoResponseDTO;
 import it.pi.registro.registro.entity.User;
+import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
-
+@Service
 public interface UserService {
 
     User createUser(User user);
@@ -14,6 +16,8 @@ public interface UserService {
     User createUserWithDetails(UserCreateRequestDTO userCreateRequestDTO);
 
     User getUserById(Long userId);
+
+    List<User> getUsersWithoutDetails();
 
     User getUserByEmail(String email);
 

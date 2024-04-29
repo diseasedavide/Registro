@@ -41,4 +41,10 @@ public class UserSubjects {
     @JoinColumn(name = "teacher_id")
     @JsonIgnoreProperties("userSubjects")
     private User teacher;
+
+    @PrePersist
+    public void prePersist() {
+        this.vote_date = LocalDateTime.now();
+        this.notes = this.notes != null && !this.notes.isEmpty() ? this.notes : "Nessuna nota inserita";
+    }
 }
