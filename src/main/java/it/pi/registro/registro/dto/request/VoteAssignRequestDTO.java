@@ -1,7 +1,7 @@
 package it.pi.registro.registro.dto.request;
 
-
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -19,9 +19,8 @@ public class VoteAssignRequestDTO {
 
     @NotNull
     private double vote;
-    private String notes;
 
-    //private LocalDateTime vote_date;
+    private String notes;
 
     @Email
     private String studentEmail;

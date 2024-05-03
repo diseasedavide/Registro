@@ -17,18 +17,17 @@ public class SubjectServiceImpl implements SubjectService {
     @Autowired
     SubjectRepository subjectRepository;
 
+
     @Override
-    public Subject createSubject(SubjectCreateRequestDTO subjectCreateRequestDTO) {
-        return subjectRepository.save(new Subject(subjectCreateRequestDTO.getSubjectName(), subjectCreateRequestDTO.getSubjectDescription()));
+    public Subject createSubject(SubjectCreateRequestDTO subjectCreateDTO) {
+        return subjectRepository.save(new Subject(
+                subjectCreateDTO.getSubjectName(),
+                subjectCreateDTO.getSubjectDescription()
+        ));
     }
 
     @Override
-    public Subject getSubjectById(Long subjectId) {
-        return null;
-    }
-
-    @Override
-    public Subject getSubjectByEmail(String email) {
+    public Subject getSubjectById(Long SubjectId) {
         return null;
     }
 
@@ -38,13 +37,12 @@ public class SubjectServiceImpl implements SubjectService {
     }
 
     @Override
-    public Subject updateSubject(Subject subject) {
+    public Subject updateSubject(Subject Subject) {
         return null;
     }
 
     @Override
-    public void deleteSubject(Long subjectId) {
+    public void deleteSubject(Long SubjectId) {
 
     }
-
 }

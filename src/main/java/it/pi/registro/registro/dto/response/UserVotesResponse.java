@@ -7,13 +7,16 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class VoteAssignResponseDTO {
-
-    private String vote;
-    private LocalDateTime vote_date;
-
+public class UserVotesResponse {
+    private double vote;
+    private LocalDateTime date;
+    private String teacherName;
+    private String teacherSurname;
+    private String subjName;
+    private String subjDescr;
 }

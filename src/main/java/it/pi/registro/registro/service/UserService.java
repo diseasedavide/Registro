@@ -2,12 +2,14 @@ package it.pi.registro.registro.service;
 
 import it.pi.registro.registro.dto.request.UserCreateRequestDTO;
 import it.pi.registro.registro.dto.request.UserInfoRequestDTO;
+import it.pi.registro.registro.dto.request.UserVotesRequest;
 import it.pi.registro.registro.dto.response.UserInfoResponseDTO;
+import it.pi.registro.registro.dto.response.UserVotesResponse;
 import it.pi.registro.registro.entity.User;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
+
 @Service
 public interface UserService {
 
@@ -19,8 +21,6 @@ public interface UserService {
 
     List<User> getUsersWithoutDetails();
 
-    User getUserByEmail(String email);
-
     UserInfoResponseDTO getUserInfoByEmail(UserInfoRequestDTO userInfoRequestDTO);
 
     List<User> getAllUsers();
@@ -28,5 +28,7 @@ public interface UserService {
     User updateUser(User user);
 
     void deleteUser(Long userId);
+
+    UserVotesResponse getUserVotes(UserVotesRequest userVotesRequest) throws Exception;
 
 }

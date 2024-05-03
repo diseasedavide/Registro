@@ -2,22 +2,21 @@ package it.pi.registro.registro.controller;
 
 import it.pi.registro.registro.dto.request.UserCreateRequestDTO;
 import it.pi.registro.registro.dto.request.UserInfoRequestDTO;
+import it.pi.registro.registro.dto.request.UserVotesRequest;
 import it.pi.registro.registro.dto.response.UserDataResponseDTO;
+import it.pi.registro.registro.dto.response.UserVotesResponse;
+import it.pi.registro.registro.entity.User;
 import it.pi.registro.registro.mapper.UserMapper;
 import it.pi.registro.registro.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import it.pi.registro.registro.entity.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-
 import java.util.List;
 import java.util.stream.Collectors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @AllArgsConstructor
@@ -32,7 +31,8 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserDataResponseDTO>> getAllUsers() {
 
-        logger.info("GetAllUsers");
+        String info = "messaggio di info";
+        logger.info("getAllUsers - {}", info);
 
         return new ResponseEntity<>(
                 userService.getAllUsers()
@@ -41,26 +41,38 @@ public class UserController {
                 .collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId) {
-        User user = userService.getUserById(userId);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
     @GetMapping("/info")
-    public ResponseEntity<?> getUserInfo(@Valid @RequestBody UserInfoRequestDTO userInfoDTO) {
-        try {
+    public ResponseEntity<?> getUserInfo(@Valid @RequestBody UserInfoRequestDTO userInfoDTO){
+        try{
             return new ResponseEntity<>(userService.getUserInfoByEmail(userInfoDTO), HttpStatus.OK);
-        } catch (Exception e) {
+        }catch (Exception e){
             return ResponseEntity.notFound().build();
         }
     }
 
+    @GetMapping("{id}")
+    public ResponseEntity<User> getUserById(@PathVariable("id") Long userId){
+        User user = userService.getUserById(userId);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @GetMapping("/userVotes/{id}")
+    public ResponseEntity<UserVotesResponse> getUserVotes(@Valid @RequestBody UserVotesRequest userVotesRequest){
+        try {
+            userService.getUserVotes(userVotesRequest);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+
+        return null;
+        //return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
     /**
-     * Create user w/o details
+     * Create simple user without details
      */
     @PostMapping
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
         User savedUser = userService.createUser(user);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
@@ -69,21 +81,13 @@ public class UserController {
      * Create user with details
      */
     @PostMapping("/withDetails")
-    public ResponseEntity<User> createUserWithDetails(@Valid @RequestBody UserCreateRequestDTO userCreateRequestDTO) {
+    public ResponseEntity<User> createUserWithDetails(@Valid @RequestBody UserCreateRequestDTO userCreateRequestDTO){
         User savedUser = userService.createUserWithDetails(userCreateRequestDTO);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/findByEmail")
-    public ResponseEntity<User> getUserByEmail(@RequestBody String email) {
-        User user = userService.getUserByEmail(email);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
-
-
     @PutMapping("{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") Long userId,
-            @RequestBody User user) {
+    public ResponseEntity<User> updateUser(@PathVariable("id") Long userId, @RequestBody User user){
         User updatedUser = userService.getUserById(userId);
         updatedUser.setFirstName(user.getFirstName());
         updatedUser.setLastName(user.getLastName());

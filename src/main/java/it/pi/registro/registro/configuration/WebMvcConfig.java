@@ -1,4 +1,5 @@
 package it.pi.registro.registro.configuration;
+
 import it.pi.registro.registro.interceptor.HttpInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

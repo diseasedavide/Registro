@@ -5,7 +5,6 @@ import it.pi.registro.registro.entity.UserType;
 import java.util.List;
 
 public interface UserTypeService {
-
     UserType createUserType(UserType UserType);
 
     UserType getUserTypeById(Long UserTypeId);
@@ -15,5 +14,4 @@ public interface UserTypeService {
     UserType updateUserType(UserType UserType);
 
     void deleteUserType(Long UserTypeId);
-
 }

@@ -1,8 +1,8 @@
 package it.pi.registro.registro.enums;
 
 public enum UserSubjectEnum {
-    ART,
+    MATH,
     HIS,
-    MAT,
-    ITA
+    ITA,
+    ART
 }

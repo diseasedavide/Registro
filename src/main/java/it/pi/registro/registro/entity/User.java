@@ -1,13 +1,15 @@
 package it.pi.registro.registro.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import it.pi.registro.registro.constant.Constants;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,7 +22,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Inserisci un nome valido")
     @Column(nullable = false)
     private String firstName;
 
@@ -40,10 +41,12 @@ public class User {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_detail_id", referencedColumnName = "id")
+    //@JsonIgnoreProperties("user") // Ignore serialization of UserDetail's user reference
     private UserDetail userDetail;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
+    //@JsonIgnoreProperties("user") // Ignore serialization of UserType's user reference
     private UserType userType;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
@@ -52,19 +55,16 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<UserSchoolClass> userSchoolClasses = new HashSet<>();
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private Set<Attendance> attendances = new HashSet<>();
-
 
     public String getActiveClass() {
         String activeClass = Constants.NO_CLASS;
-       for (UserSchoolClass userSchoolClass : this.getUserSchoolClasses()){
-           if (userSchoolClass.getEndDate() == null) {
-               activeClass = userSchoolClass.getSchoolClass().getName();
-               break;
-           }
-       }
-       return activeClass;
+        for (UserSchoolClass userSchoolClass: this.getUserSchoolClasses()){
+            if(userSchoolClass.getEndDate() == null){
+                activeClass = userSchoolClass.getSchoolClass().getName();
+                break;
+            }
+        }
+        return activeClass;
     }
 
     @Override
@@ -76,5 +76,4 @@ public class User {
                 ", email='" + email + '\'' +
                 '}';
     }
-
 }

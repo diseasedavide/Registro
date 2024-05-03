@@ -1,8 +1,11 @@
 package it.pi.registro.registro.controller;
 
 import it.pi.registro.registro.dto.request.AttendanceRegisterRequestDTO;
+import it.pi.registro.registro.dto.request.SubjectCreateRequestDTO;
 import it.pi.registro.registro.dto.response.AttendanceRegisterResponseDTO;
+import it.pi.registro.registro.entity.Subject;
 import it.pi.registro.registro.service.AttendanceService;
+import it.pi.registro.registro.service.SubjectService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -24,8 +27,8 @@ public class AttendanceController {
     private AttendanceService attendanceService;
 
     /**
-
-     Register simple Attendance*/
+     * Register simple Attendance
+     */
     @PostMapping("/register")
     public ResponseEntity<AttendanceRegisterResponseDTO> registerAttendance(@Valid @RequestBody AttendanceRegisterRequestDTO attendanceRegisterRequestDTO){
         logger.info("RegisterAttendance...");

@@ -1,12 +1,12 @@
 package it.pi.registro.registro.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "user_subjects")
@@ -29,22 +29,24 @@ public class UserSubjects {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties("userSubjects")
+    @JsonIgnoreProperties("userSubjects") // Ignore serialization of User's userSubjects reference
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "subject_id")
-    @JsonIgnoreProperties("userSubjects")
+    @JsonIgnoreProperties("userSubjects") // Ignore serialization of Subject's userSubjects reference
     private Subject subject;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
-    @JsonIgnoreProperties("userSubjects")
+    @JsonIgnoreProperties("userSubjects") // Ignore serialization of User's userSubjects reference
     private User teacher;
 
     @PrePersist
-    public void prePersist() {
+    public void prePersist(){
         this.vote_date = LocalDateTime.now();
-        this.notes = this.notes != null && !this.notes.isEmpty() ? this.notes : "Nessuna nota inserita";
+        this.notes = this.notes!= null && !this.notes.isEmpty() ? this.notes : "NESSUNA NOTA INSERITA";
     }
+
+
 }

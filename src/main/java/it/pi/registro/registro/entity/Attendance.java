@@ -1,19 +1,19 @@
 package it.pi.registro.registro.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
 
 @Entity
-@Table(name = "attendance")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "attendance")
 public class Attendance {
 
     @Id
@@ -21,42 +21,42 @@ public class Attendance {
     private Long id;
 
     @Column
-    private LocalDateTime reference_date;
+    private LocalDateTime referenceDate;
 
     @Column
-    private LocalDateTime insertion_date;
+    private LocalDateTime insertionDate;
 
     @Column
-    private LocalDateTime entrance_date;
+    private LocalDateTime entranceDate;
 
     @Column
-    private LocalDateTime exit_date;
+    private LocalDateTime exitDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @JsonIgnoreProperties("attendances")
     private User student;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private User teacher;
 
-    public Attendance(LocalDateTime reference_date, LocalDateTime insertion_date, LocalDateTime entrance_date, LocalDateTime exit_date, User student, User teacher) {
-        this.reference_date = reference_date;
-        this.insertion_date = insertion_date;
-        this.entrance_date = entrance_date;
-        this.exit_date = exit_date;
+    public Attendance(LocalDateTime referenceDate, LocalDateTime insertionDate, LocalDateTime entranceDate, LocalDateTime exitDate, User student, User teacher) {
+        this.referenceDate = referenceDate;
+        this.insertionDate = insertionDate;
+        this.entranceDate = entranceDate;
+        this.exitDate = exitDate;
         this.student = student;
         this.teacher = teacher;
     }
 
     @PrePersist
     @PreUpdate
-    public void prePersistUpdate() throws Exception {
-        this.reference_date = this.reference_date == null ? LocalDateTime.now() : this.getReference_date();
-        if (this.getEntrance_date().isAfter(this.getExit_date())) {
-            throw new Exception("exception");
+    public void prePersist() throws Exception {
+        this.referenceDate = this.referenceDate == null ? LocalDateTime.now() : this.getReferenceDate();
+        if(this.getEntranceDate().isAfter(this.getExitDate())){
+            throw new Exception("exceprt");
         }
+
     }
 
 }

@@ -5,16 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "school_class")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "school_class")
 public class SchoolClass {
 
     @Id
@@ -27,8 +28,8 @@ public class SchoolClass {
     @Column
     private boolean active = true;
 
-    @OneToMany(mappedBy = "schoolClass", cascade = CascadeType.ALL)
-    private Set<UserSchoolClass> userSchoolClass = new HashSet<>();
+    @OneToMany(mappedBy = "schoolClass" , cascade = CascadeType.ALL)
+    private Set<UserSchoolClass> userSchoolClasses = new HashSet<>();
 
     @Override
     public String toString() {
@@ -36,6 +37,7 @@ public class SchoolClass {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", active=" + active +
+             //   ", userSchoolClasses=" + userSchoolClasses +
                 '}';
     }
 }

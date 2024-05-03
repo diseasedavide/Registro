@@ -12,9 +12,8 @@ import lombok.Setter;
 public class UserType {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "Inserisci un nome valido")
     @Column(nullable = false)
     private String type;
     @Column(nullable = false)

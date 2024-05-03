@@ -1,6 +1,5 @@
 package it.pi.registro.registro.entity;
 
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -31,7 +30,6 @@ public class UserSchoolClass {
     @ManyToOne
     @JoinColumn(name = "school_class_id")
     private SchoolClass schoolClass;
-
 
     @Override
     public String toString() {

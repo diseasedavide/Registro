@@ -8,12 +8,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserCreateRequestDTO {
-
 
     @NotBlank
     private String firstName;
@@ -26,6 +25,7 @@ public class UserCreateRequestDTO {
     private String password;
     @NotBlank
     private String address;
+    @NotBlank
     private String city;
 
     private UserTypeEnum type;

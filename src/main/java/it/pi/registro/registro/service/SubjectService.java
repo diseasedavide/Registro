@@ -7,16 +7,13 @@ import java.util.List;
 
 public interface SubjectService {
 
-    Subject createSubject(SubjectCreateRequestDTO subjectCreateRequestDTO);
+    Subject createSubject(SubjectCreateRequestDTO subjectCreateDTO);
 
-    Subject getSubjectById(Long subjectId);
-
-    Subject getSubjectByEmail(String email);
+    Subject getSubjectById(Long SubjectId);
 
     List<Subject> getAllSubjects();
 
-    Subject updateSubject(Subject subject);
+    Subject updateSubject(Subject Subject);
 
-    void deleteSubject(Long subjectId);
-
+    void deleteSubject(Long SubjectId);
 }

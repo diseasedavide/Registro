@@ -1,11 +1,13 @@
 package it.pi.registro.registro.service;
 
 import it.pi.registro.registro.dto.request.AttendanceRegisterRequestDTO;
+import it.pi.registro.registro.dto.request.SubjectCreateRequestDTO;
 import it.pi.registro.registro.dto.response.AttendanceRegisterResponseDTO;
-import org.springframework.stereotype.Service;
+import it.pi.registro.registro.entity.Attendance;
+import it.pi.registro.registro.entity.Subject;
 
-@Service
+import java.util.List;
+
 public interface AttendanceService {
-
-    AttendanceRegisterResponseDTO registerAttendance(AttendanceRegisterRequestDTO attendanceRegisterRequestDTO);
+    AttendanceRegisterResponseDTO registerAttendance (AttendanceRegisterRequestDTO attendanceRegisterRequestDTO);
 }

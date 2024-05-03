@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/subjects")
@@ -17,9 +16,14 @@ public class SubjectController {
 
     private SubjectService subjectService;
 
-
+    /**
+     * Create simple Subject
+     */
     @PostMapping
-    public ResponseEntity<Subject> createSubject(@Valid @RequestBody SubjectCreateRequestDTO subjectCreateRequestDTO) {
-        return new ResponseEntity<>(subjectService.createSubject(subjectCreateRequestDTO), HttpStatus.CREATED);
+    public ResponseEntity<Subject> createSubject(@Valid @RequestBody SubjectCreateRequestDTO subjectCreateDTO){
+        return new ResponseEntity<>(subjectService.createSubject(subjectCreateDTO), HttpStatus.CREATED);
+
     }
+
+
 }
