@@ -20,25 +20,25 @@ public class ScheduledTasks {
     @Autowired
     private UserService userService;
 
-    @Scheduled(cron = "0 * * * * *")
+//    @Scheduled(cron = "0 * * * * *")
     public void execute() {
         scheduledService.createReport();
         long unixTimestamp = System.currentTimeMillis() / 1000L;
         System.out.println("REPORT_" + unixTimestamp);
 
-//        File report = new File("REPORT_" + unixTimestamp + ".txt");
-//        try {
-//            FileWriter fileWriter = new FileWriter(report);
-//
-//            for(User u : userService.getUsersWithoutDetails()) {
-//                fileWriter.append(u.getFirstName() + " " + u.getLastName() + "\n");
-//            }
-//            fileWriter.flush();
-//            fileWriter.close();
-//        } catch (IOException e) {
-//            System.out.println("Error creating file");
-//            e.printStackTrace();
-//        }
+        File report = new File("REPORT_" + unixTimestamp + ".txt");
+        try {
+            FileWriter fileWriter = new FileWriter(report);
+
+            for(User u : userService.getUsersWithoutDetails()) {
+                fileWriter.append(u.getFirstName() + " " + u.getLastName() + "\n");
+            }
+            fileWriter.flush();
+            fileWriter.close();
+        } catch (IOException e) {
+            System.out.println("Error creating file");
+            e.printStackTrace();
+        }
     }
 
 

@@ -27,4 +27,5 @@ public class UserDataResponseDTO {
     private String city;
     private String role;
     private List<UserSubjectDTO> votes;
+    private String currentSchoolClass;
 }

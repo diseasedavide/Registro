@@ -7,26 +7,32 @@ import it.pi.registro.registro.mapper.UserMapper;
 import it.pi.registro.registro.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import it.pi.registro.registro.entity.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.time.Period;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/users")
 public class UserController {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+
     private UserService userService;
     private UserMapper userMapper;
 
     @GetMapping
     public ResponseEntity<List<UserDataResponseDTO>> getAllUsers() {
+
+        logger.info("GetAllUsers");
 
         return new ResponseEntity<>(
                 userService.getAllUsers()
@@ -74,13 +80,6 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-    /*
-    @PostMapping
-    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
-        User savedUser = userService.createUser(user);
-        return new ResponseEntity<>(savedUser, HttpStatus.CREATED);
-    }
-    */
 
     @PutMapping("{id}")
     public ResponseEntity<User> updateUser(@PathVariable("id") Long userId,

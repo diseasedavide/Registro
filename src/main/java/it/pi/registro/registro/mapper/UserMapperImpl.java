@@ -15,6 +15,11 @@ public class UserMapperImpl implements UserMapper {
     @Override
     public UserDataResponseDTO toDataResponseDTO(User user) {
 
+//        System.out.println(user.getUserSchoolClasses());
+//        user.getUserSchoolClasses().forEach(userSchoolClass -> {
+//            System.out.println(userSchoolClass.getSchoolClass().getName());
+//        });
+
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         Period period =
 
@@ -33,7 +38,8 @@ public class UserMapperImpl implements UserMapper {
                 user.getUserDetail() != null && user.getUserDetail().getAddress() != null ? user.getUserDetail().getAddress() : "",
                 user.getUserDetail() != null && user.getUserDetail().getCity() != null ? user.getUserDetail().getCity() : "",
                 user.getUserType()!= null && user.getUserType().getDescription() != null ? user.getUserType().getDescription() : "",
-                new ArrayList<>()
+                new ArrayList<>(),
+                user.getActiveClass()
         );
         user.getUserSubjects().forEach(
                 userSubjects -> {

@@ -1,0 +1,24 @@
+2024-05-03T09:17:20.402+02:00  INFO 1788 --- [registro] [main] i.p.r.registro.RegistroApplication       : Starting RegistroApplication using Java 17.0.10 with PID 1788 (C:\Users\rinna\Desktop\Corso Java\registro\target\classes started by rinna in C:\Users\rinna\Desktop\Corso Java\registro)
+2024-05-03T09:17:20.416+02:00  INFO 1788 --- [registro] [main] i.p.r.registro.RegistroApplication       : No active profile set, falling back to 1 default profile: "default"
+2024-05-03T09:17:21.326+02:00  INFO 1788 --- [registro] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-05-03T09:17:21.458+02:00  INFO 1788 --- [registro] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 120 ms. Found 5 JPA repository interfaces.
+2024-05-03T09:17:22.282+02:00  INFO 1788 --- [registro] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-05-03T09:17:22.298+02:00  INFO 1788 --- [registro] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-05-03T09:17:22.299+02:00  INFO 1788 --- [registro] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.19]
+2024-05-03T09:17:22.380+02:00  INFO 1788 --- [registro] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-05-03T09:17:22.381+02:00  INFO 1788 --- [registro] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1882 ms
+2024-05-03T09:17:22.554+02:00  INFO 1788 --- [registro] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-05-03T09:17:22.628+02:00  INFO 1788 --- [registro] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.4.4.Final
+2024-05-03T09:17:22.664+02:00  INFO 1788 --- [registro] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-05-03T09:17:22.924+02:00  INFO 1788 --- [registro] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-05-03T09:17:22.950+02:00  INFO 1788 --- [registro] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-05-03T09:17:23.382+02:00  INFO 1788 --- [registro] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@77b71c9
+2024-05-03T09:17:23.384+02:00  INFO 1788 --- [registro] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-05-03T09:17:23.449+02:00  WARN 1788 --- [registro] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-05-03T09:17:24.378+02:00  INFO 1788 --- [registro] [main] o.h.m.i.EntityInstantiatorPojoStandard   : HHH000182: No default (no-argument) constructor for class: it.pi.registro.registro.entity.Attendance (class must be instantiated by Interceptor)
+2024-05-03T09:17:24.731+02:00  INFO 1788 --- [registro] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-05-03T09:17:24.867+02:00  INFO 1788 --- [registro] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-05-03T09:17:25.168+02:00  INFO 1788 --- [registro] [main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-05-03T09:17:25.750+02:00  WARN 1788 --- [registro] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-05-03T09:17:26.129+02:00  INFO 1788 --- [registro] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path ''
+2024-05-03T09:17:26.140+02:00  INFO 1788 --- [registro] [main] i.p.r.registro.RegistroApplication       : Started RegistroApplication in 6.256 seconds (process running for 6.677)

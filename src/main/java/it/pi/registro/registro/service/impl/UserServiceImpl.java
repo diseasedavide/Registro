@@ -1,5 +1,6 @@
 package it.pi.registro.registro.service.impl;
 
+import it.pi.registro.registro.controller.UserController;
 import it.pi.registro.registro.dto.request.UserCreateRequestDTO;
 import it.pi.registro.registro.dto.request.UserInfoRequestDTO;
 import it.pi.registro.registro.dto.response.UserInfoResponseDTO;
@@ -11,6 +12,8 @@ import it.pi.registro.registro.repository.UserRepository;
 import it.pi.registro.registro.repository.UserTypeRepository;
 import it.pi.registro.registro.service.UserService;
 import lombok.AllArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -22,6 +25,8 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     private UserRepository userRepository;
     private UserTypeRepository userTypeRepository;
@@ -89,6 +94,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
+        logger.info("GetAllUsers");
         return userRepository.findAll();
     }
 
