@@ -1,19 +1,28 @@
 package it.pi.registro.registro.mapper;
 
+import it.pi.registro.registro.configuration.RegistroProp;
 import it.pi.registro.registro.dto.UserDTO;
 import it.pi.registro.registro.dto.UserSubjectDTO;
+import it.pi.registro.registro.dto.request.UserVotesRequest;
 import it.pi.registro.registro.dto.response.UserDataResponseDTO;
 import it.pi.registro.registro.entity.Subject;
 import it.pi.registro.registro.entity.User;
 import it.pi.registro.registro.entity.UserDetail;
 import it.pi.registro.registro.entity.UserSubjects;
+import it.pi.registro.registro.exception.BadRequestException;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class UserMapperImpl implements UserMapper{
+
+    @Autowired
+    private RegistroProp registroProp;
+
     @Override
     public UserDTO toDTO(User user) {
 
@@ -70,9 +79,34 @@ public class UserMapperImpl implements UserMapper{
                                     )
                             );
         });
-
-
-
         return userDataResponseDTO;
     }
+
+    @Override
+    public UserVotesRequest toVoteRequestDTO(UserVotesRequest userVotesRequest) {
+        if (userVotesRequest.getStartDate() == null && userVotesRequest.getEndDate() == null) {
+            return new UserVotesRequest(
+                    getStartDate(),
+                    getEndDate(),
+                    3L
+            );
+        } else if (userVotesRequest.getStartDate() == null || userVotesRequest.getEndDate() == null) {
+            throw new BadRequestException("Both dates must be null or set");
+        } else if (userVotesRequest.getStartDate().isAfter(userVotesRequest.getEndDate())) {
+            throw new BadRequestException("Start date cannot be after end date");
+        }
+
+        return userVotesRequest;
+    }
+
+
+    private LocalDateTime getStartDate(){
+        return LocalDateTime.now();
+    }
+
+    private LocalDateTime getEndDate(){
+        return LocalDateTime.now();
+    }
+
+
 }

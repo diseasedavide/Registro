@@ -32,11 +32,11 @@ public class Attendance {
     @Column
     private LocalDateTime exitDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL) // Cascade removal operations
     @JoinColumn(name = "user_id")
     private User student;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL) // Cascade removal operations
     @JoinColumn(name = "teacher_id")
     private User teacher;
 

@@ -39,22 +39,24 @@ public class User {
 
     private String activeClass;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "user_detail_id", referencedColumnName = "id")
     //@JsonIgnoreProperties("user") // Ignore serialization of UserDetail's user reference
     private UserDetail userDetail;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "user_type_id", referencedColumnName = "id")
     //@JsonIgnoreProperties("user") // Ignore serialization of UserType's user reference
     private UserType userType;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private Set<UserSubjects> userSubjects = new HashSet<>();
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user") // Cascade removal operations
     private Set<UserSchoolClass> userSchoolClasses = new HashSet<>();
 
+    @OneToMany(mappedBy = "student") // Cascade removal operations
+    private Set<Attendance> studentAttendances = new HashSet<>();
 
     public String getActiveClass() {
         String activeClass = Constants.NO_CLASS;

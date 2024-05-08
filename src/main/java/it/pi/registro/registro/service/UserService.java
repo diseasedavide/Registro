@@ -6,7 +6,10 @@ import it.pi.registro.registro.dto.request.UserVotesRequest;
 import it.pi.registro.registro.dto.response.UserInfoResponseDTO;
 import it.pi.registro.registro.dto.response.UserVotesResponse;
 import it.pi.registro.registro.entity.User;
+import it.pi.registro.registro.exception.BadRequestException;
+import it.pi.registro.registro.exception.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -29,6 +32,7 @@ public interface UserService {
 
     void deleteUser(Long userId);
 
-    UserVotesResponse getUserVotes(UserVotesRequest userVotesRequest) throws Exception;
+    UserVotesResponse getUserVotes(UserVotesRequest userVotesRequest)
+            throws ResourceNotFoundException, BadRequestException;
 
 }
